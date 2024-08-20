@@ -4,16 +4,14 @@ const cors = require("cors");
 require("dotenv").config();
 
 const app = express();
-const PORT = process.env.PORT || 5500;
+const PORT = process.env.PORT;
 
 app.use(express.json());
 app.use(cors());
 
 // Connect to MongoDB
 mongoose
-  .connect(
-    "mongodb+srv://ghoshaniruddha2003:admin@cluster0.xa4ab9t.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
-  )
+  .connect(process.env.MONGODB_URI)
   .then(() => {
     console.log("Connected to MongoDB");
   })
