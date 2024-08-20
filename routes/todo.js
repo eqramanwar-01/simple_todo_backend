@@ -29,14 +29,11 @@ router.post("/", async (req, res) => {
 // Update a todo
 router.patch("/:id", async (req, res) => {
   try {
-    const todo = await Todo.findById(req.params.id);
-    if (req.body.text) {
-      todo.text = req.body.text;
-    }
-    if (req.body.completed) {
-      todo.completed = req.body.completed;
-    }
-    const updatedTodo = await todo.save();
+    const updatedTodo = await Todo.findByIdAndUpdate(
+      req.params.id,
+      { completed: req.body.completed }, // Update completed status
+      { new: true }
+    );
     res.json(updatedTodo);
   } catch (err) {
     res.status(400).json({ message: err.message });
