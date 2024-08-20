@@ -5,13 +5,14 @@ require("dotenv").config();
 
 const app = express();
 const PORT = process.env.PORT;
+const MONGODB_URI = process.env.MONGO_URI;
 
 app.use(express.json());
 app.use(cors());
 
 // Connect to MongoDB
 mongoose
-  .connect(process.env.MONGODB_URI)
+  .connect(MONGODB_URI, {})
   .then(() => {
     console.log("Connected to MongoDB");
   })
