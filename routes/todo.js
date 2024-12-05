@@ -31,7 +31,7 @@ router.patch("/:id", async (req, res) => {
   try {
     const updatedTodo = await Todo.findByIdAndUpdate(
       req.params.id,
-      { completed: req.body.completed }, // Update completed status
+      { text: req.body.text, completed: req.body.completed }, // Update completed status
       { new: true }
     );
     res.json(updatedTodo);
@@ -44,8 +44,7 @@ router.patch("/:id", async (req, res) => {
 
 router.delete("/:id", async (req, res) => {
   try {
-    const todo = await Todo.findById(req.params.id);
-    await todo.delete();
+    const todo = await Todo.findByIdAndDelete(req.params.id);
     res.json({ message: "Todo Deleted" });
   } catch (err) {
     res.status(500).json({ message: err.message });

@@ -22,7 +22,7 @@ mongoose
 
 //   Import the routes
 const todoRoutes = require("./routes/todo");
-app.use("/api/todos", todoRoutes);
+app.use("/todo", todoRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
